@@ -3,6 +3,7 @@ import cors from 'cors'
 import 'dotenv/config'
 
 import { userRoutes } from './routes/usuarios.js'
+import { connectDB } from './database/usuarios.js'
 
 console.clear()
 const port = process.env.PORT || 3000
@@ -16,6 +17,9 @@ app.disable('x-powered-by')
 
 //* Routes
 app.use('/api/usuarios', userRoutes)
+
+//* Database
+connectDB()
 
 app.listen(port, () => {
   console.log(`Server is running on port http://localhost:${port}`)
