@@ -5,8 +5,15 @@ import { validarCampos, validarCamposPartial } from '../schemas/usuariosZod.js'
 import { UserModel } from '../models/userModel.js'
 
 export class UserControllers {
-  static async getUsers(req, res) {
-    res.json({ message: 'get' })
+  static async getUsers(req = request, res = response) {
+    const { limit = 10, skip = 0 } = req.query
+
+    const { usuarios, usuariosCount } = await UserModel.getUser(limit, skip)
+
+    res.json({
+      usuarios: usuarios.value,
+      totalUsuarios: usuariosCount.value
+    })
   }
 
   static async postUsers(req = request, res = response) {
@@ -48,7 +55,19 @@ export class UserControllers {
     res.json(usuarioUpdate)
   }
 
-  static async deleteUsers(req, res) {
-    res.json({ message: 'delete' })
+  static async deleteUsers(req = request, res = response) {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'ID no válido' })
+    }
+
+    const { usuarioId, usuarioDelete } = await UserModel.deleteUser(id)
+
+    if (!usuarioId) {
+      return res.status(400).json({ message: 'Id ya existe' })
+    }
+
+    res.json({ message: 'Usuario Eliminado', usuarioDelete })
   }
 }
