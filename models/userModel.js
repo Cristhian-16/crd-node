@@ -22,4 +22,25 @@ export class UserModel {
       emailExist
     }
   }
+
+  static async putUser(id, objeto) {
+    const usuarioId = await UsuarioModel.findById(id)
+
+    //* Si no existe ese id por ende no Usuario
+    if (!usuarioId) return false
+
+    /* Volver a encryptar la contraseña */
+    if (objeto.password) {
+      const salt = bcrypt.genSaltSync(10)
+      objeto.password = bcrypt.hashSync(objeto.password, salt)
+    }
+
+    //? Usuario Actualizado
+    const usuarioUpdate = await UsuarioModel.findByIdAndUpdate(id, objeto, { new: true })
+
+    return {
+      usuarioId,
+      usuarioUpdate
+    }
+  }
 }

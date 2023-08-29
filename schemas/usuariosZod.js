@@ -24,3 +24,7 @@ const usuarioZod = z.object({
 export const validarCampos = async (object) => {
   return usuarioZod.safeParse(object)
 }
+
+export const validarCamposPartial = async (object) => {
+  return usuarioZod.partial().safeParse(object)
+}
