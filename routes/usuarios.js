@@ -1,19 +1,13 @@
 import { Router } from 'express'
 
+import { UserControllers } from '../controllers/userControllers.js'
+
 export const userRoutes = Router()
 
-userRoutes.get('/', (req, res) => {
-  res.json({ message: 'get' })
-})
+userRoutes.get('/', UserControllers.getUsers)
 
-userRoutes.post('/', (req, res) => {
-  res.json({ message: 'post' })
-})
+userRoutes.post('/', UserControllers.postUsers)
 
-userRoutes.put('/:id', (req, res) => {
-  res.json({ message: 'put' })
-})
+userRoutes.put('/:id', UserControllers.putUsers)
 
-userRoutes.delete('/:id', (req, res) => {
-  res.json({ message: 'delete' })
-})
+userRoutes.delete('/:id', UserControllers.deleteUsers)
