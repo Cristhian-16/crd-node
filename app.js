@@ -2,6 +2,7 @@ import express from 'express'
 import 'dotenv/config'
 
 import { userRoutes } from './routes/usuarios.js'
+import { loginRouter } from './routes/login.js'
 import { connectDB } from './database/usuarios.js'
 import { corsUser } from './middlewares/cors.js'
 
@@ -17,6 +18,7 @@ app.disable('x-powered-by')
 
 //* Routes
 app.use('/api/usuarios', userRoutes)
+app.use('/api/auth', loginRouter)
 
 //* Database
 connectDB()
