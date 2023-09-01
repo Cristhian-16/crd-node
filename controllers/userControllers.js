@@ -57,6 +57,7 @@ export class UserControllers {
 
   static async deleteUsers(req = request, res = response) {
     const { id } = req.params
+    const user = req.user
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ message: 'ID no válido' })
@@ -68,6 +69,6 @@ export class UserControllers {
       return res.status(400).json({ message: 'Id ya existe' })
     }
 
-    res.json({ message: 'Usuario Eliminado', usuarioDelete })
+    res.json({ message: 'Usuario Eliminado', usuarioDelete, user })
   }
 }

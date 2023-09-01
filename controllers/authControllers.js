@@ -1,8 +1,11 @@
 import { request, response } from 'express'
 import { validarCamposLogin } from '../schemas/loginZod.js'
 import { authModel } from '../models/authModel.js'
+import { UsuarioModel } from '../schemas/usuarios.js'
 
 export class AuthController {
+
+
   static async postAuth(req = request, res = response) {
     try {
       const result = validarCamposLogin(req.body)
