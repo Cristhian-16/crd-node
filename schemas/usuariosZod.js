@@ -18,7 +18,8 @@ const usuarioZod = z.object({
       required_error: 'password es requerida'
     })
     .min(6, { message: 'La password debe tener minimo 6 letras' }),
-  estado: z.boolean().default(true).optional()
+  estado: z.boolean().default(true).optional(),
+  rol: z.enum(['USER_ROLE', 'ADMIN_ROLE'])
 })
 
 export const validarCampos = async (object) => {

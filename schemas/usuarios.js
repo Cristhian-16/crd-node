@@ -17,6 +17,11 @@ export const usuarioSchema = new Schema({
   estado: {
     type: Boolean,
     default: true
+  },
+  rol: {
+    type: String,
+    required: [true, 'El rol es requerido'],
+    enum: ['USER_ROLE', 'ADMIN_ROLE']
   }
 })
 usuarioSchema.methods.toJSON = function () {
