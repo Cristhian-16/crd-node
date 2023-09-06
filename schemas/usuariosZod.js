@@ -19,7 +19,9 @@ const usuarioZod = z.object({
     })
     .min(6, { message: 'La password debe tener minimo 6 letras' }),
   estado: z.boolean().default(true).optional(),
-  rol: z.enum(['USER_ROLE', 'ADMIN_ROLE'])
+  rol: z.enum(['USER_ROLE', 'ADMIN_ROLE']),
+  google: z.boolean().default(false),
+  picture: z.string().optional()
 })
 
 export const validarCampos = async (object) => {

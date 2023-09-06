@@ -15,6 +15,7 @@ const app = express()
 app.use(express.json())
 app.use(corsUser())
 app.disable('x-powered-by')
+app.use(express.static('public'))
 
 //* Routes
 app.use('/api/auth', authRouter)

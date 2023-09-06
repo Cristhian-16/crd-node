@@ -14,6 +14,17 @@ const loginZod = z.object({
     .min(6, { message: 'La password debe tener minimo 6 letras' })
 })
 
+const googleLogin = z.object({
+  id_token: z.string({
+    required_error: 'id_token Valido',
+    invalid_type_error: 'id_token debe ser un string'
+  })
+})
+
 export const validarCamposLogin = (object) => {
   return loginZod.safeParse(object)
+}
+
+export const validarCamposGoogle = (object) => {
+  return googleLogin.safeParse(object)
 }
