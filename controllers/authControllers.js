@@ -1,5 +1,6 @@
 import { request, response } from 'express'
-import { validarCamposGoogle, validarCamposLogin } from '../schemas/loginZod.js'
+
+import { validarCamposGoogle, validarCamposLogin } from '../zod/loginZod.js'
 import { authModel } from '../models/authModel.js'
 import { verifyGoogle } from '../helpers/google-verify.js'
 import { UsuarioModel } from '../schemas/usuarios.js'

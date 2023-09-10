@@ -1,7 +1,7 @@
 import { request, response } from 'express'
 import mongoose from 'mongoose'
 
-import { validarCampos, validarCamposPartial } from '../schemas/usuariosZod.js'
+import { validarCampos, validarCamposPartial } from '../zod/usuariosZod.js'
 import { UserModel } from '../models/userModel.js'
 
 export class UserControllers {

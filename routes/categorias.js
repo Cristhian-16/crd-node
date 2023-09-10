@@ -1,9 +1,11 @@
 import { Router } from 'express'
 
+import { CategoriaControllers } from '../controllers/categoriasControllers.js'
+
 export const categoriasRoutes = Router()
 
-categoriasRoutes.get('/', (req, res) => {
-  res.json({
-    msg: 'get API - categorias'
-  })
-})
+categoriasRoutes.get('/', CategoriaControllers.getCategorias)
+categoriasRoutes.get('/:id', CategoriaControllers.getCategoria)
+categoriasRoutes.post('/', CategoriaControllers.postCategoria)
+categoriasRoutes.put('/:id', CategoriaControllers.putCategoria)
+categoriasRoutes.put('/:id', CategoriaControllers.deleteCategoria)
