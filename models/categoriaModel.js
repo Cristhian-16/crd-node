@@ -1,6 +1,6 @@
 import { CategoriaModel } from '../schemas/categorias.js'
 
-export class CategoriaModels {
+export class  CategoriaModels {
   static async getCategorias(limit) {
     const usuarios = await CategoriaModel.find({ estado: true })
       .limit(Number(limit))
